@@ -1,0 +1,43 @@
+version: '3'
+services:
+  web:
+    build: ./web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web:/app
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - app
+
+  app:
+    build: ./app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./app:/app
+    environment:
+      - NODE_ENV=development
+      - PORT=8080
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=testecrud
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
