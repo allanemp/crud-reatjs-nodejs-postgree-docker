@@ -23,13 +23,13 @@ const NavbarComponent = () => {
                     {/* Link para gerenciamento de usuários */}
                     <NavItem className="mx-2">
                         <Link to="/manage-users" className="text-white text-decoration-none hover-effect">
-                            <i className="fas fa-users me-1"></i>Manage Users
+                            <i className="fas fa-users me-1"></i>Gerenciar Usuários
                         </Link>
                     </NavItem>
                     {/* Link para adicionar novo usuário */}
                     <NavItem className="mx-2">
                         <Link to="/add-user" className="text-white text-decoration-none hover-effect">
-                            <i className="fas fa-user-plus me-1"></i>Add User
+                            <i className="fas fa-user-plus me-1"></i>Adicionar Usuário
                         </Link>
                     </NavItem>
                 </Nav>

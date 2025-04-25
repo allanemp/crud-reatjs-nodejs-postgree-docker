@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import userService from '../../services/userService';
-
+import { toast } from 'react-toastify';
 const useUsers = () => {
     
     const [users, setUsers] = useState([]);
@@ -8,11 +8,11 @@ const useUsers = () => {
     useEffect(() => {        
         try {
             userService.getAll().then((response) => {
-                console.log("response", response.data);
                 setUsers(response.data);
+                toast.success('Usuários carregados com sucesso');
             });
         } catch (error) {
-            console.error("Error fetching users:", error);
+            toast.error('Erro ao carregar usuários');
         }
     }, []);
 

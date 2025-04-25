@@ -4,11 +4,12 @@ import validationUser from './validations/ValidationUser';
 import { Controller } from 'react-hook-form';
 import UserService from '../../../services/userService';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
+import {  toast } from 'react-toastify';
 
 const useFormUser = ({ id }) => {
     const navigate = useNavigate();
-
+    
     const { handleSubmit, control, formState: { errors }, setValue } = useForm({
         resolver: zodResolver(validationUser),
     });
@@ -28,18 +29,21 @@ const useFormUser = ({ id }) => {
         if (id) {
             try {
                 await UserService.update(id, data);
+                toast.success('Usuário atualizado com sucesso');
                 navigate('/manage-users');
             } catch (error) {
-                alert(error.response.data.message);
+                toast.error(error.response.data.message);
             }
             return;
         } 
         
         try {
             await UserService.create(data);
+            toast.success('Usuário cadastrado com sucesso');
+            
             navigate('/manage-users');
         } catch (error) {
-            alert(error.response.data.message);
+            toast.error(error.response.data.message);
         }
         
     }

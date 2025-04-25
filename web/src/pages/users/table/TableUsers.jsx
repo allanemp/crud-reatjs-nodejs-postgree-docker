@@ -1,13 +1,14 @@
 import { Table, Button } from 'reactstrap';
-import UserService from '../../../services/userService';
 import useTableUsers from './useTableUsers';
-
+import ModalDeleteConfirm from '../../../components/ModalDeleteConfirm';
+ 
 const TableUsers = ({ users, setUsers }) => {
     
-    const { handleDelete, handleEdit } = useTableUsers({ users, setUsers });
+    const { toggleConfirm, handleDelete, handleEdit, isModalOpen, toggleModal, message } = useTableUsers({ users, setUsers });
 
     return (
         <div className="table-responsive">
+            <ModalDeleteConfirm isOpen={isModalOpen} toggle={toggleModal} message={message} toggleConfirm={toggleConfirm} />
             <Table hover className="align-middle">
                 <thead className="table-light"> 
                     <tr>
@@ -23,6 +24,7 @@ const TableUsers = ({ users, setUsers }) => {
                             <td>{user.email}</td>
                             <td className="text-end">
                                 <Button 
+                                    name="editar"
                                     color="info" 
                                     size="sm" 
                                     className="me-2"
@@ -32,6 +34,7 @@ const TableUsers = ({ users, setUsers }) => {
                                     Editar
                                 </Button>
                                 <Button 
+                                    name="excluir"
                                     color="danger" 
                                     size="sm"
                                     onClick={() => handleDelete(user.id)}

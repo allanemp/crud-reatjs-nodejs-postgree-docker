@@ -5,6 +5,9 @@ Sistema de gerenciamento de usuários desenvolvido com React.js, Node.js e Postg
 Permite cadastrar, listar, editar e excluir usuários.
 
 ## Tecnologias Utilizadas
+- Testes
+   Cypress (rode "npx cypress open" no cmd para ver os testes criados)
+
 - Frontend:
   - React.js
   - Reactstrap (UI components)
@@ -87,6 +90,23 @@ server/                 # Backend (Node.js)
 4. Push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
 
+## Para rodar com o Docker
+Acesse a pasta principal do projeto e rode os comandos abaixo.
+Foi criado um volume para compartilhar os arquivos locais com o docker.
+
+```bash
+corepack enable yarn
+yarn install
+docker compose up
+```
+## Para rodar os Testes
+Acesse a pasta "web"
+e rode o seguinte comando
+```bash
+npx cypress open
+```
+
 ## Licença
 Este projeto está sob a licença MIT. 
+
 

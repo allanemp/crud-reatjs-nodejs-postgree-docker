@@ -7,10 +7,13 @@ import AddUserPage from './pages/users/AddUserPage';
 import NavbarComponent from './components/NavbarComponent';
 import { Container } from 'reactstrap';
 import EditUserPage from './pages/users/EditUserPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="App">
+      <ToastContainer />      
       <NavbarComponent />
       <Container className="mt-4">        
           <Routes>
